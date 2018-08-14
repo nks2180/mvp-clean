@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.androidSdk.compile
+    buildToolsVersion versions.androidSdk.buildTools
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.mvp.nkumar.mvp"
+        minSdkVersion versions.androidSdk.min
+        targetSdkVersion versions.androidSdk.target
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["notAnnotation"] = "com.newsuk.performance.PerformanceTest"
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+
+dependencies {
+    annotationProcessor libraries.app.autoValue.processor
+    annotationProcessor libraries.app.dagger.processor
+    annotationProcessor libraries.app.dagger.android.processor
+    annotationProcessor libraries.app.autoValue.parcelable.processor
+    annotationProcessor libraries.app.autoValue.moshi.processor
+
+    provided libraries.app.autoValue.annotations
+    provided libraries.app.autoValue.moshi.annotations
+
+    compile project(':core')
+    compile libraries.support.appcompat
+    compile libraries.support.v4
+    compile libraries.support.recyclerview
+
+    compile libraries.app.dagger.runtime
+    compile libraries.app.dagger.android.runtime
+    compile libraries.app.dagger.android.support
+    compile libraries.app.rxAndroid
+}
