@@ -52,6 +52,13 @@ public class HealthFeedAdapter extends RecyclerView.Adapter<FeedViewHolder> {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        FeedViewState componentViewState = viewStates.get(position);
+        FeedViewState.Type type = componentViewState.type();
+        return type.value();
+    }
+
+    @Override
     public int getItemCount() {
         return viewStates.size();
     }
