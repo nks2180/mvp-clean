@@ -10,10 +10,8 @@ public abstract class HealthQnaViewState implements FeedViewState {
     public static HealthQnaViewState create(int code,
                                             String title,
                                             String body,
-                                            String tag,
-                                            String supportText,
                                             List<Media> mediaList) {
-        return new AutoValue_HealthQnaViewState(code, title, body, tag, supportText, mediaList);
+        return new AutoValue_HealthQnaViewState(code, title, body, mediaList);
     }
 
     public abstract int code();
@@ -21,10 +19,6 @@ public abstract class HealthQnaViewState implements FeedViewState {
     public abstract String title();
 
     public abstract String body();
-
-    public abstract String tag();
-
-    public abstract String supportText();
 
     public abstract List<Media> mediaList();
 

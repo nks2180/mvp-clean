@@ -31,7 +31,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
 
     @Override
     public void visit(HealthQnaFeed healthQnaFeed) {
-        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code, healthQnaFeed.title, healthQnaFeed.body, healthQnaFeed.tag, healthQnaFeed.supportText, healthQnaFeed.mediaList);
+        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code, healthQnaFeed.title, healthQnaFeed.body, healthQnaFeed.mediaList);
         viewStates.add(qnaViewState);
     }
 
