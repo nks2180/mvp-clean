@@ -10,8 +10,9 @@ public abstract class HealthQnaViewState implements FeedViewState {
     public static HealthQnaViewState create(int code,
                                             String title,
                                             String body,
-                                            List<Media> mediaList) {
-        return new AutoValue_HealthQnaViewState(code, title, body, mediaList);
+                                            int bannerImageVisibilty,
+                                            String bannerImagePath) {
+        return new AutoValue_HealthQnaViewState(code, title, body, bannerImageVisibilty, bannerImagePath);
     }
 
     public abstract int code();
@@ -20,7 +21,9 @@ public abstract class HealthQnaViewState implements FeedViewState {
 
     public abstract String body();
 
-    public abstract List<Media> mediaList();
+    public abstract int bannerImageVisibilty();
+
+    public abstract String bannerImagePath();
 
     @Override
     public final FeedViewState.Type type() {

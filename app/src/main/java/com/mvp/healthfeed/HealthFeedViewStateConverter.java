@@ -1,5 +1,8 @@
 package com.mvp.healthfeed;
 
+import android.view.View;
+
+import com.mvp.common.Optional;
 import com.mvp.rx.Converter;
 
 import java.util.ArrayList;
@@ -7,6 +10,7 @@ import java.util.List;
 
 public class HealthFeedViewStateConverter implements Converter<HealthFeed, HealthFeedViewState>, Feed.Visitor {
 
+    private static final String INVALID_IMAGE_URL = "http://image.url";
     private final List<FeedViewState> viewStates = new ArrayList<>();
 
     @Override
@@ -31,7 +35,11 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
 
     @Override
     public void visit(HealthQnaFeed healthQnaFeed) {
-        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code, healthQnaFeed.title, healthQnaFeed.body, healthQnaFeed.mediaList);
+        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code,
+                healthQnaFeed.title,
+                healthQnaFeed.body,
+                imagaeVisbilityFrom(healthQnaFeed.imageUrl),
+                imagaeUrlFrom(healthQnaFeed.imageUrl));
         viewStates.add(qnaViewState);
     }
 
@@ -45,4 +53,13 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
     public void visit(UnknownFeed unknownFeed) {
         // no op
     }
+
+    private int imagaeVisbilityFrom(Optional<String> image) {
+        return image.isPresent() ? View.VISIBLE : View.GONE;
+    }
+
+    private String imagaeUrlFrom(Optional<String> image) {
+        return image.isPresent() ? image.get() : INVALID_IMAGE_URL;
+    }
+
 }

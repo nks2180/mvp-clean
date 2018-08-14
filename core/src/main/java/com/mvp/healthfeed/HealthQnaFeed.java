@@ -1,5 +1,7 @@
 package com.mvp.healthfeed;
 
+import com.mvp.common.Optional;
+
 import java.util.List;
 
 public class HealthQnaFeed implements Feed {
@@ -9,20 +11,20 @@ public class HealthQnaFeed implements Feed {
     final String body;
     final String tag;
     final String supportText;
-    final List<Media> mediaList;
+    final Optional<String> imageUrl;
 
     public HealthQnaFeed(int code,
                          String title,
                          String body,
                          String tag,
                          String supportText,
-                         List<Media> mediaList) {
+                         Optional<String> imageUrl) {
         this.code = code;
         this.title = title;
         this.body = body;
         this.tag = tag;
         this.supportText = supportText;
-        this.mediaList = mediaList;
+        this.imageUrl = imageUrl;
     }
 
     @Override

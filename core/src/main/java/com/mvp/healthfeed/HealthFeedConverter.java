@@ -1,5 +1,6 @@
 package com.mvp.healthfeed;
 
+import com.mvp.common.Optional;
 import com.mvp.healthfeed.api.ApiAdFeed;
 import com.mvp.healthfeed.api.ApiFeed;
 import com.mvp.healthfeed.api.ApiHealthFeed;
@@ -43,7 +44,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQnAFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQnaFeed(apiQnAFeed.code, apiQnAFeed.title, apiQnAFeed.body, apiQnAFeed.tag, apiQnAFeed.supportText, mediaList);
+        return new HealthQnaFeed(apiQnAFeed.code, apiQnAFeed.title, apiQnAFeed.body, apiQnAFeed.tag, apiQnAFeed.supportText, imagaPathfrom(mediaList));
     }
 
     @Override
@@ -52,7 +53,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQuizFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQnaFeed(apiQuizFeed.code, apiQuizFeed.title, apiQuizFeed.body, apiQuizFeed.tag, apiQuizFeed.supportText, mediaList);
+        return new HealthQuizFeed(apiQuizFeed.code, apiQuizFeed.title, apiQuizFeed.body, apiQuizFeed.tag, apiQuizFeed.supportText, mediaList);
     }
 
     @Override
@@ -61,6 +62,13 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiAdFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQnaFeed(apiAdFeed.code, apiAdFeed.title, apiAdFeed.body, apiAdFeed.tag, apiAdFeed.supportText, mediaList);
+        return new HealthAdFeed(apiAdFeed.code, apiAdFeed.title, apiAdFeed.body, apiAdFeed.tag, apiAdFeed.supportText, mediaList);
+    }
+
+    private Optional<String> imagaPathfrom(List<Media> media) {
+        if (media != null && media.size() > 0 && media.get(0).path != null) {
+            return Optional.of(media.get(0).path);
+        }
+        return Optional.absent();
     }
 }
