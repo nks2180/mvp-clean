@@ -21,7 +21,7 @@ class HealthFeedActivityPresenter {
                 .subscribe(new Consumer<HealthFeedViewState>() {
                     @Override
                     public void accept(HealthFeedViewState healthFeedViewState) throws Exception {
-                        view.show(healthFeedViewState);
+                        view.show(healthFeedViewState.feedViewStates());
                     }
                 });
 
