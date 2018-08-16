@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mvp.healthfeed.FeedViewState;
+import com.mvp.image.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,10 +14,12 @@ import java.util.List;
 public class HealthFeedAdapter extends RecyclerView.Adapter<FeedViewHolder> {
 
     private final LayoutInflater layoutInflater;
+    private final ImageLoader imageLoader;
     private List<FeedViewState> viewStates = Collections.emptyList();
 
-    public HealthFeedAdapter(LayoutInflater layoutInflater) {
+    public HealthFeedAdapter(LayoutInflater layoutInflater, ImageLoader imageLoader) {
         this.layoutInflater = layoutInflater;
+        this.imageLoader = imageLoader;
     }
 
     public void setViewStates(List<FeedViewState> viewStates) {
@@ -29,13 +32,13 @@ public class HealthFeedAdapter extends RecyclerView.Adapter<FeedViewHolder> {
         FeedViewState.Type type = FeedViewState.Type.from(viewType);
         switch (type) {
             case FEED_AD:
-                return new AdViewHolder(layoutInflater, parent);
+                return new AdViewHolder(layoutInflater, parent, imageLoader);
             case FEED_QNA:
-                return new QnAViewHolder(layoutInflater, parent);
+                return new QnAViewHolder(layoutInflater, parent, imageLoader);
             case FEED_QUIZ:
-                return new QuizViewHolder(layoutInflater, parent);
+                return new QuizViewHolder(layoutInflater, parent, imageLoader);
             case FEED_TIP:
-                return new TipViewHolder(layoutInflater, parent);
+                return new TipViewHolder(layoutInflater, parent, imageLoader);
             default:
                 throw new IllegalArgumentException("Can't recoginse view type: " + viewType);
         }

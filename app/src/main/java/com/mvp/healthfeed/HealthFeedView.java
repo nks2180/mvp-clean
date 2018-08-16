@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 
 import com.mvp.R;
 import com.mvp.healthfeed.adapter.HealthFeedAdapter;
+import com.mvp.image.ImageLoader;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ class HealthFeedView {
 
     private final HealthFeedAdapter adapter;
 
-    static HealthFeedView from(HealthFeedActivity activity) {
+    static HealthFeedView from(HealthFeedActivity activity, ImageLoader imageLoader) {
         RecyclerView recyclerView = activity.findViewById(R.id.recyclerVw_feed);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
-        HealthFeedAdapter adapter = new HealthFeedAdapter(LayoutInflater.from(activity));
+        HealthFeedAdapter adapter = new HealthFeedAdapter(LayoutInflater.from(activity), imageLoader);
         recyclerView.setAdapter(adapter);
         return new HealthFeedView(adapter);
     }

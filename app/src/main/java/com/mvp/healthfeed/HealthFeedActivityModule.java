@@ -1,6 +1,7 @@
 package com.mvp.healthfeed;
 
 import com.mvp.common.AssetLoader;
+import com.mvp.image.ImageLoader;
 import com.mvp.rx.AndroidSchedulingStrategyFactory;
 import com.squareup.moshi.Moshi;
 
@@ -25,8 +26,9 @@ public class HealthFeedActivityModule {
 
     @Provides
     HealthFeedActivityPresenter presenter(HealthFeedActivity activity,
-                                          HealthFeedUseCase useCase) {
-        HealthFeedView feedView = HealthFeedView.from(activity);
+                                          HealthFeedUseCase useCase,
+                                          ImageLoader imageLoader) {
+        HealthFeedView feedView = HealthFeedView.from(activity, imageLoader);
         return new HealthFeedActivityPresenter(useCase, feedView);
     }
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.mvp.R;
 import com.mvp.healthfeed.FeedViewState;
 import com.mvp.healthfeed.HealthQnaViewState;
+import com.mvp.image.ImageLoader;
 
 public class QnAViewHolder extends FeedViewHolder {
 
@@ -15,9 +16,11 @@ public class QnAViewHolder extends FeedViewHolder {
     private final TextView txtVwTitle;
     private final TextView txtVwBody;
     private final ImageView imgVwBanner;
+    private final ImageLoader imageLoader;
 
-    QnAViewHolder(LayoutInflater layoutInflater, ViewGroup parent) {
+    QnAViewHolder(LayoutInflater layoutInflater, ViewGroup parent, ImageLoader imageLoader) {
         super(layoutInflater, parent, FeedViewState.Type.FEED_QNA);
+        this.imageLoader = imageLoader;
         imgVwBanner = itemView.findViewById(R.id.imgVw_qna_banner);
         txtVwTitle = itemView.findViewById(R.id.txtVw_qna_title);
         txtVwBody = itemView.findViewById(R.id.txtVw_qna_body);
@@ -26,9 +29,11 @@ public class QnAViewHolder extends FeedViewHolder {
     @Override
     public void bind(FeedViewState viewState) {
         HealthQnaViewState qnaViewState = (HealthQnaViewState) viewState;
-        imgVwBanner.setVisibility(qnaViewState.bannerImageVisibilty());
         txtVwBody.setText(qnaViewState.body());
         txtVwTitle.setText(qnaViewState.title());
+        imgVwBanner.setVisibility(qnaViewState.bannerImageVisibility());
+        imageLoader.load(qnaViewState.bannerImagePath())
+                .into(imgVwBanner);
     }
 
     @Override
