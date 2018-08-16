@@ -42,4 +42,6 @@ dependencies {
     compile libraries.app.dagger.android.runtime
     compile libraries.app.dagger.android.support
     compile libraries.app.rxAndroid
+
+    compile libraries.app.picasso
 }
