@@ -1,25 +1,33 @@
 package com.mvp.healthfeed;
 
 import com.mvp.common.AssetLoader;
+import com.mvp.healthfeed.api.HealthFeedApiFetcher;
+import com.mvp.healthfeed.api.HealthFeedLocalFetcher;
 import com.mvp.image.ImageLoader;
 import com.mvp.rx.AndroidSchedulingStrategyFactory;
 import com.squareup.moshi.Moshi;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
 
 @Module()
 public class HealthFeedActivityModule {
 
     @Provides
-    HealthFeedFetcher healthFeedFetcher(Moshi moshi, AssetLoader assetLoader) {
-        return HealthFeedFetcher.from(moshi, assetLoader);
+    HealthFeedLocalFetcher localHealthFeedFetcher(Moshi moshi, AssetLoader assetLoader) {
+        return HealthFeedLocalFetcher.from(moshi, assetLoader);
     }
 
     @Provides
-    HealthFeedUseCase useCase(HealthFeedFetcher healthFeedFetcher) {
+    HealthFeedApiFetcher apiHealthFeedFetcher(Retrofit retrofit, Moshi moshi) {
+        return HealthFeedApiFetcher.from(retrofit, moshi);
+    }
+
+    @Provides
+    HealthFeedUseCase useCase(HealthFeedApiFetcher fetcher) {
         HealthFeedViewStateConverter viewStateConverter = new HealthFeedViewStateConverter();
-        return new HealthFeedUseCase(healthFeedFetcher,
+        return new HealthFeedUseCase(fetcher,
                 viewStateConverter,
                 AndroidSchedulingStrategyFactory.io());
     }

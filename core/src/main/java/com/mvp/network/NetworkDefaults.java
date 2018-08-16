@@ -20,7 +20,7 @@ public final class NetworkDefaults {
 
     static Retrofit retrofit() {
         return new Retrofit.Builder()
-                .baseUrl("http://invalid.value")
+                .baseUrl("https://api.myjson.com/")
                 .client(okHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

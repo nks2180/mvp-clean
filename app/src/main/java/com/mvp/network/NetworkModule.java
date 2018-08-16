@@ -31,7 +31,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     public HttpUrl baseUrl() {
-        return HttpUrl.parse("");
+        return HttpUrl.parse("https://api.myjson.com/");
     }
 
     @Provides

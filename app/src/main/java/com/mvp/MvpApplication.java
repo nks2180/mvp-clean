@@ -16,6 +16,7 @@ public class MvpApplication extends InjectableApplication {
         public ApplicationInjector create(Application application) {
             return DaggerApplicationInjector.builder()
                     .applicationModule(new ApplicationModule(application))
+                    .networkModule(new NetworkModule(application))
                     .build();
         }
     }
