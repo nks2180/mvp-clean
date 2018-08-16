@@ -6,6 +6,7 @@ import com.mvp.common.AnalyticsModule;
 import com.mvp.common.AndroidAssetLoader;
 import com.mvp.common.AssetLoader;
 import com.mvp.common.TimeZoneModule;
+import com.mvp.image.ImageLoaderModule;
 import com.mvp.network.JsonModule;
 import com.mvp.network.NetworkModule;
 
@@ -19,6 +20,7 @@ import dagger.Provides;
         JsonModule.class,
         TimeZoneModule.class,
         NetworkModule.class,
+        ImageLoaderModule.class,
         AnalyticsModule.class})
 public class ApplicationModule {
 
