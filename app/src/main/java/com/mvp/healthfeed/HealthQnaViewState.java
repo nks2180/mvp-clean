@@ -21,7 +21,7 @@ public abstract class HealthQnaViewState implements FeedViewState {
 
     public abstract String body();
 
-    public abstract int bannerImageVisibilty();
+    public abstract int bannerImageVisibility();
 
     public abstract String bannerImagePath();
 

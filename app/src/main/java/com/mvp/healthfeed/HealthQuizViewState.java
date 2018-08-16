@@ -8,12 +8,13 @@ import java.util.List;
 public abstract class HealthQuizViewState implements FeedViewState {
 
     public static HealthQuizViewState create(int code,
-                                            String title,
-                                            String body,
-                                            String tag,
-                                            String supportText,
-                                            List<Media> mediaList) {
-        return new AutoValue_HealthQuizViewState(code, title, body, tag, supportText, mediaList);
+                                             String title,
+                                             String body,
+                                             String tag,
+                                             String supportText,
+                                             int bannerImageVisibility,
+                                             String bannerImagePath) {
+        return new AutoValue_HealthQuizViewState(code, title, body, tag, supportText, bannerImageVisibility, bannerImagePath);
     }
 
     public abstract int code();
@@ -26,7 +27,9 @@ public abstract class HealthQuizViewState implements FeedViewState {
 
     public abstract String supportText();
 
-    public abstract List<Media> mediaList();
+    public abstract int bannerImageVisibility();
+
+    public abstract String bannerImagePath();
 
     @Override
     public final FeedViewState.Type type() {

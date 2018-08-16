@@ -12,8 +12,9 @@ public abstract class HealthTipViewState implements FeedViewState {
                                             String body,
                                             String tag,
                                             String supportText,
-                                            List<Media> mediaList) {
-        return new AutoValue_HealthTipViewState(code, title, body, tag, supportText, mediaList);
+                                            int bannerImageVisibility,
+                                            String bannerImagePath) {
+        return new AutoValue_HealthTipViewState(code, title, body, tag, supportText, bannerImageVisibility, bannerImagePath);
     }
 
     public abstract int code();
@@ -26,7 +27,9 @@ public abstract class HealthTipViewState implements FeedViewState {
 
     public abstract String supportText();
 
-    public abstract List<Media> mediaList();
+    public abstract int bannerImageVisibility();
+
+    public abstract String bannerImagePath();
 
     @Override
     public final FeedViewState.Type type() {

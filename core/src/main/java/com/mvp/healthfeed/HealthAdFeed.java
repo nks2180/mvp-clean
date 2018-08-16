@@ -1,28 +1,30 @@
 package com.mvp.healthfeed;
 
+import com.mvp.common.Optional;
+
 import java.util.List;
 
-public class HealthAdFeed implements Feed{
+public class HealthAdFeed implements Feed {
 
     final int code;
     final String title;
     final String body;
     final String tag;
     final String supportText;
-    final List<Media> mediaList;
+    Optional<String> imageUrl;
 
-    public HealthAdFeed(int code,
-                        String title,
-                        String body,
-                        String tag,
-                        String supportText,
-                        List<Media> mediaList) {
+    HealthAdFeed(int code,
+                 String title,
+                 String body,
+                 String tag,
+                 String supportText,
+                 Optional<String> imageUrl) {
         this.code = code;
         this.title = title;
         this.body = body;
         this.tag = tag;
         this.supportText = supportText;
-        this.mediaList = mediaList;
+        this.imageUrl = imageUrl;
     }
 
     @Override
