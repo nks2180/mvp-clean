@@ -1,8 +1,9 @@
 package com.mvp.healthfeed;
 
+import com.mvp.healthfeed.api.HealthFeedFetcher;
 import com.mvp.rx.SchedulingStrategy;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class HealthFeedUseCase {
 
@@ -18,8 +19,8 @@ public class HealthFeedUseCase {
         this.schedulingStrategyFactory = schedulingStrategyFactory;
     }
 
-    Observable<HealthFeedViewState> healthFeed() {
-        return fetcher.loadFromLocalAssetsFolder()
+    Single<HealthFeedViewState> healthFeed() {
+        return fetcher.load()
                 .map(converter)
                 .compose(schedulingStrategyFactory.<HealthFeedViewState>create());
     }

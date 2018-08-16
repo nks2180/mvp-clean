@@ -1,8 +1,7 @@
-package com.mvp.healthfeed;
+package com.mvp.healthfeed.api;
 
 import com.mvp.common.AssetLoader;
-import com.mvp.healthfeed.api.ApiFeed;
-import com.mvp.healthfeed.api.ApiHealthFeed;
+import com.mvp.healthfeed.HealthFeed;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.Moshi;
@@ -10,7 +9,6 @@ import com.squareup.moshi.Moshi;
 import java.io.InputStream;
 import java.util.concurrent.Callable;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import okio.Buffer;
 
