@@ -23,13 +23,25 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
 
     @Override
     public void visit(HealthTipFeed tipFeed) {
-        HealthTipViewState tipViewState = HealthTipViewState.create(tipFeed.code, tipFeed.title, tipFeed.body, tipFeed.tag, tipFeed.supportText, tipFeed.mediaList);
+        HealthTipViewState tipViewState = HealthTipViewState.create(tipFeed.code,
+                tipFeed.title,
+                tipFeed.body,
+                tipFeed.tag,
+                tipFeed.supportText,
+                imagaeVisbilityFrom(tipFeed.imageUrl),
+                imagaeUrlFrom(tipFeed.imageUrl));
         viewStates.add(tipViewState);
     }
 
     @Override
     public void visit(HealthQuizFeed healthQuizFeed) {
-        HealthQuizViewState quizViewState = HealthQuizViewState.create(healthQuizFeed.code, healthQuizFeed.title, healthQuizFeed.body, healthQuizFeed.tag, healthQuizFeed.supportText, healthQuizFeed.mediaList);
+        HealthQuizViewState quizViewState = HealthQuizViewState.create(healthQuizFeed.code,
+                healthQuizFeed.title,
+                healthQuizFeed.body,
+                healthQuizFeed.tag,
+                healthQuizFeed.supportText,
+                imagaeVisbilityFrom(healthQuizFeed.imageUrl),
+                imagaeUrlFrom(healthQuizFeed.imageUrl));
         viewStates.add(quizViewState);
     }
 
@@ -45,7 +57,13 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
 
     @Override
     public void visit(HealthAdFeed healthAdFeed) {
-        HealthAdViewState adViewState = HealthAdViewState.create(healthAdFeed.code, healthAdFeed.title, healthAdFeed.body, healthAdFeed.tag, healthAdFeed.supportText, healthAdFeed.mediaList);
+        HealthAdViewState adViewState = HealthAdViewState.create(healthAdFeed.code,
+                healthAdFeed.title,
+                healthAdFeed.body,
+                healthAdFeed.tag,
+                healthAdFeed.supportText,
+                imagaeVisbilityFrom(healthAdFeed.imageUrl),
+                imagaeUrlFrom(healthAdFeed.imageUrl));
         viewStates.add(adViewState);
     }
 

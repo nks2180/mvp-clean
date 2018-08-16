@@ -35,7 +35,12 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
 
         }
-        return new HealthTipFeed(apiTipFeed.code, apiTipFeed.title, apiTipFeed.body, apiTipFeed.tag, apiTipFeed.supportText, mediaList);
+        return new HealthTipFeed(apiTipFeed.code,
+                apiTipFeed.title,
+                apiTipFeed.body,
+                apiTipFeed.tag,
+                apiTipFeed.supportText,
+                imagaPathfrom(mediaList));
     }
 
     @Override
@@ -44,7 +49,12 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQnAFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQnaFeed(apiQnAFeed.code, apiQnAFeed.title, apiQnAFeed.body, apiQnAFeed.tag, apiQnAFeed.supportText, imagaPathfrom(mediaList));
+        return new HealthQnaFeed(apiQnAFeed.code,
+                apiQnAFeed.title,
+                apiQnAFeed.body,
+                apiQnAFeed.tag,
+                apiQnAFeed.supportText,
+                imagaPathfrom(mediaList));
     }
 
     @Override
@@ -53,7 +63,12 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQuizFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQuizFeed(apiQuizFeed.code, apiQuizFeed.title, apiQuizFeed.body, apiQuizFeed.tag, apiQuizFeed.supportText, mediaList);
+        return new HealthQuizFeed(apiQuizFeed.code,
+                apiQuizFeed.title,
+                apiQuizFeed.body,
+                apiQuizFeed.tag,
+                apiQuizFeed.supportText,
+                imagaPathfrom(mediaList));
     }
 
     @Override
@@ -62,7 +77,12 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiAdFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthAdFeed(apiAdFeed.code, apiAdFeed.title, apiAdFeed.body, apiAdFeed.tag, apiAdFeed.supportText, mediaList);
+        return new HealthAdFeed(apiAdFeed.code,
+                apiAdFeed.title,
+                apiAdFeed.body,
+                apiAdFeed.tag,
+                apiAdFeed.supportText,
+                imagaPathfrom(mediaList));
     }
 
     private Optional<String> imagaPathfrom(List<Media> media) {
