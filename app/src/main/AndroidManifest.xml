@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mvp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.mvp.MvpApplication"
         android:allowBackup="true"
@@ -12,7 +14,6 @@
         <activity android:name="com.mvp.healthfeed.HealthFeedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
