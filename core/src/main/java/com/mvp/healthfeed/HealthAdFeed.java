@@ -13,7 +13,7 @@ public class HealthAdFeed implements Feed {
     final String supportText;
     Optional<String> imageUrl;
 
-    HealthAdFeed(int code,
+    public HealthAdFeed(int code,
                  String title,
                  String body,
                  String tag,

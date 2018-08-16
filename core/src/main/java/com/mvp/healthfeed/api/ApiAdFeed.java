@@ -4,21 +4,21 @@ import com.mvp.healthfeed.Feed;
 
 import java.util.List;
 
-public class ApiAdFeed implements ApiFeed {
+class ApiAdFeed implements ApiFeed {
 
-    public final int code;
-    public final String title;
-    public final String body;
-    public final String tag;
-    public final String supportText;
-    public final List<ApiMedia> mediaList;
+    final int code;
+    final String title;
+    final String body;
+    final String tag;
+    final String supportText;
+    final List<ApiMedia> mediaList;
 
-    public ApiAdFeed(int code,
-                     String title,
-                     String body,
-                     String tag,
-                     String supportText,
-                     List<ApiMedia> mediaList) {
+    ApiAdFeed(int code,
+              String title,
+              String body,
+              String tag,
+              String supportText,
+              List<ApiMedia> mediaList) {
         this.code = code;
         this.title = title;
         this.body = body;

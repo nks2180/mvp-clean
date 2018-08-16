@@ -1,6 +1,13 @@
-package com.mvp.healthfeed;
+package com.mvp.healthfeed.api;
 
 import com.mvp.common.Optional;
+import com.mvp.healthfeed.Feed;
+import com.mvp.healthfeed.HealthAdFeed;
+import com.mvp.healthfeed.HealthFeed;
+import com.mvp.healthfeed.HealthQnaFeed;
+import com.mvp.healthfeed.HealthQuizFeed;
+import com.mvp.healthfeed.HealthTipFeed;
+import com.mvp.healthfeed.Media;
 import com.mvp.healthfeed.api.ApiAdFeed;
 import com.mvp.healthfeed.api.ApiFeed;
 import com.mvp.healthfeed.api.ApiHealthFeed;
@@ -19,11 +26,14 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
 
     @Override
     public HealthFeed apply(ApiHealthFeed apiHealthFeed) throws Exception {
-        List<ApiFeed> apiFeeds = apiHealthFeed.healthStories;
+
         List<Feed> feeds = new ArrayList<>();
-        for (ApiFeed apiFeed : apiFeeds) {
-            Feed feed = apiFeed.accept(this);
-            feeds.add(feed);
+        if (apiHealthFeed.status.code == 200) {
+            List<ApiFeed> apiFeeds = apiHealthFeed.healthStories;
+            for (ApiFeed apiFeed : apiFeeds) {
+                Feed feed = apiFeed.accept(this);
+                feeds.add(feed);
+            }
         }
         return new HealthFeed(feeds);
     }

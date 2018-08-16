@@ -1,9 +1,6 @@
 package com.mvp.healthfeed;
 
 import com.mvp.common.Optional;
-import com.mvp.healthfeed.api.ApiFeed;
-
-import java.util.List;
 
 public class HealthQuizFeed implements Feed {
 
@@ -14,7 +11,7 @@ public class HealthQuizFeed implements Feed {
     final String supportText;
     Optional<String> imageUrl;
 
-    HealthQuizFeed(int code,
+    public HealthQuizFeed(int code,
                    String title,
                    String body,
                    String tag,

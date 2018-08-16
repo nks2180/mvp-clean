@@ -2,7 +2,7 @@ package com.mvp.healthfeed.api;
 
 import com.mvp.healthfeed.Feed;
 
-public interface ApiFeed {
+interface ApiFeed {
 
     ApiFeed UNKNOWN = new ApiUnknownFeed();
 

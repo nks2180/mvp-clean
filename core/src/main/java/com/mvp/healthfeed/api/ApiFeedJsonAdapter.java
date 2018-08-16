@@ -1,11 +1,5 @@
-package com.mvp.healthfeed;
+package com.mvp.healthfeed.api;
 
-import com.mvp.healthfeed.api.ApiAdFeed;
-import com.mvp.healthfeed.api.ApiFeed;
-import com.mvp.healthfeed.api.ApiMedia;
-import com.mvp.healthfeed.api.ApiQnAFeed;
-import com.mvp.healthfeed.api.ApiQuizFeed;
-import com.mvp.healthfeed.api.ApiTipFeed;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.JsonWriter;

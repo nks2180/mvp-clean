@@ -13,7 +13,7 @@ public class HealthQnaFeed implements Feed {
     final String supportText;
     final Optional<String> imageUrl;
 
-    HealthQnaFeed(int code,
+    public HealthQnaFeed(int code,
                          String title,
                          String body,
                          String tag,
