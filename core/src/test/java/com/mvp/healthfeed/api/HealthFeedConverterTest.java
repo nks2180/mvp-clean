@@ -17,7 +17,6 @@ import java.util.Collections;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
 public class HealthFeedConverterTest {
     private static final ApiStatus API_STATUS = new ApiStatus(11, "message");
     private static final ApiMedia API_MEDIA = new ApiMedia("http://media.path", "image");

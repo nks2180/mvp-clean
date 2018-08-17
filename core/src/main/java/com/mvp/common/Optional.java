@@ -73,7 +73,7 @@ public final class Optional<T> {
      * is non-null, otherwise an empty {@code Optional}
      */
     public static <T> Optional<T> ofNullable(T value) {
-        return value == null ? absent() : of(value);
+        return value == null ? (Optional<T>) absent() : of(value);
     }
 
     /**
