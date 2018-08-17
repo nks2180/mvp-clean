@@ -19,12 +19,12 @@ import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HealthFeedConverterTest {
-    public static final ApiStatus API_STATUS = new ApiStatus(11, "message");
-    public static final ApiMedia API_MEDIA = new ApiMedia("http://media.path", "image");
-    public static final ApiFeed API_TIP_FEED = new ApiTipFeed(100, "Tip title", "Tip body", "tag", "Tip support text", Arrays.asList(API_MEDIA));
-    public static final ApiFeed API_QNA_FEED = new ApiQnAFeed(200, "Qna Title", "Qna body", "tag", "Qna support text", Arrays.asList(API_MEDIA));
-    public static final ApiFeed API_AD_FEED = new ApiAdFeed(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Arrays.asList(API_MEDIA));
-    public static final ApiFeed API_QUIZ_FEED = new ApiQuizFeed(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Arrays.asList(API_MEDIA));
+    private static final ApiStatus API_STATUS = new ApiStatus(11, "message");
+    private static final ApiMedia API_MEDIA = new ApiMedia("http://media.path", "image");
+    private static final ApiFeed API_TIP_FEED = new ApiTipFeed(100, "Tip title", "Tip body", "tag", "Tip support text", Arrays.asList(API_MEDIA));
+    private static final ApiFeed API_QNA_FEED = new ApiQnAFeed(200, "Qna Title", "Qna body", "tag", "Qna support text", Arrays.asList(API_MEDIA));
+    private static final ApiFeed API_AD_FEED = new ApiAdFeed(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Arrays.asList(API_MEDIA));
+    private static final ApiFeed API_QUIZ_FEED = new ApiQuizFeed(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Arrays.asList(API_MEDIA));
 
     private HealthFeedConverter converter;
 
@@ -53,7 +53,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthTipFeed expectedTipFeed = new HealthTipFeed(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
+        HealthTipFeed expectedTipFeed = HealthTipFeed.create(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedTipFeed);
 
     }
@@ -65,10 +65,8 @@ public class HealthFeedConverterTest {
                 .build();
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
-
-        HealthQnaFeed expectedQnAFeed = new HealthQnaFeed(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
+        HealthQnaFeed expectedQnAFeed = HealthQnaFeed.create(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedQnAFeed);
-
     }
 
     @Test
@@ -79,7 +77,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthAdFeed expectedAdFeed = new HealthAdFeed(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
+        HealthAdFeed expectedAdFeed = HealthAdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedAdFeed);
 
     }
@@ -92,7 +90,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthQuizFeed expectedQuizFeed = new HealthQuizFeed(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
+        HealthQuizFeed expectedQuizFeed = HealthQuizFeed.create(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedQuizFeed);
 
     }
