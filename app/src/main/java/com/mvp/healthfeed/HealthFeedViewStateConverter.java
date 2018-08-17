@@ -28,7 +28,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
                 tipFeed.body(),
                 tipFeed.tag(),
                 tipFeed.supportText(),
-                imagaeVisbilityFrom(tipFeed.imageUrl()),
+                imageVisbilityFrom(tipFeed.imageUrl()),
                 imagaeUrlFrom(tipFeed.imageUrl()));
         viewStates.add(tipViewState);
     }
@@ -40,7 +40,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
                 healthQuizFeed.body(),
                 healthQuizFeed.tag(),
                 healthQuizFeed.supportText(),
-                imagaeVisbilityFrom(healthQuizFeed.imageUrl()),
+                imageVisbilityFrom(healthQuizFeed.imageUrl()),
                 imagaeUrlFrom(healthQuizFeed.imageUrl()));
         viewStates.add(quizViewState);
     }
@@ -50,7 +50,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
         HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code(),
                 healthQnaFeed.title(),
                 healthQnaFeed.body(),
-                imagaeVisbilityFrom(healthQnaFeed.imageUrl()),
+                imageVisbilityFrom(healthQnaFeed.imageUrl()),
                 imagaeUrlFrom(healthQnaFeed.imageUrl()));
         viewStates.add(qnaViewState);
     }
@@ -62,7 +62,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
                 healthAdFeed.body(),
                 healthAdFeed.tag(),
                 healthAdFeed.supportText(),
-                imagaeVisbilityFrom(healthAdFeed.imageUrl()),
+                imageVisbilityFrom(healthAdFeed.imageUrl()),
                 imagaeUrlFrom(healthAdFeed.imageUrl()));
         viewStates.add(adViewState);
     }
@@ -72,7 +72,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
         // no op
     }
 
-    private int imagaeVisbilityFrom(Optional<String> image) {
+    private int imageVisbilityFrom(Optional<String> image) {
         return image.isPresent() ? View.VISIBLE : View.GONE;
     }
 
