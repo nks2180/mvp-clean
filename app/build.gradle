@@ -44,4 +44,10 @@ dependencies {
     compile libraries.app.rxAndroid
 
     compile libraries.app.picasso
+
+    testCompile libraries.test.junit
+    testCompile libraries.test.truth
+    testCompile libraries.test.mockito
+    testCompile libraries.test.robolectric.core
+    testCompile libraries.test.robolectric.multidex
 }
