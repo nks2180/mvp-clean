@@ -16,13 +16,15 @@ buildscript {
 }
 
 dependencies {
-    // implementation fileTree(dir: 'libs', include: ['*.jar'])
     compile libraries.app.rxJava
     compile libraries.app.javaxInject
     compile libraries.app.okHttp
     compile libraries.app.retrofit.lib
     compile libraries.app.retrofit.rxJavaAdapter
     compile libraries.app.retrofit.moshiConverter
+
+    compileOnly libraries.app.autoValue.annotations
+    apt libraries.app.autoValue.processor
 
     testCompile libraries.test.truth
     testCompile libraries.test.junit
