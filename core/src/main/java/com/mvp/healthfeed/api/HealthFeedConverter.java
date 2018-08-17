@@ -8,18 +8,10 @@ import com.mvp.healthfeed.HealthQnaFeed;
 import com.mvp.healthfeed.HealthQuizFeed;
 import com.mvp.healthfeed.HealthTipFeed;
 import com.mvp.healthfeed.Media;
-import com.mvp.healthfeed.api.ApiAdFeed;
-import com.mvp.healthfeed.api.ApiFeed;
-import com.mvp.healthfeed.api.ApiHealthFeed;
-import com.mvp.healthfeed.api.ApiMedia;
-import com.mvp.healthfeed.api.ApiQnAFeed;
-import com.mvp.healthfeed.api.ApiQuizFeed;
-import com.mvp.healthfeed.api.ApiTipFeed;
 import com.mvp.rx.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>, ApiFeed.Visitor {
 
@@ -45,7 +37,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
 
         }
-        return new HealthTipFeed(apiTipFeed.code,
+        return HealthTipFeed.create(apiTipFeed.code,
                 apiTipFeed.title,
                 apiTipFeed.body,
                 apiTipFeed.tag,
@@ -59,7 +51,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQnAFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQnaFeed(apiQnAFeed.code,
+        return HealthQnaFeed.create(apiQnAFeed.code,
                 apiQnAFeed.title,
                 apiQnAFeed.body,
                 apiQnAFeed.tag,
@@ -73,7 +65,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQuizFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthQuizFeed(apiQuizFeed.code,
+        return HealthQuizFeed.create(apiQuizFeed.code,
                 apiQuizFeed.title,
                 apiQuizFeed.body,
                 apiQuizFeed.tag,
@@ -87,7 +79,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiAdFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return new HealthAdFeed(apiAdFeed.code,
+        return HealthAdFeed.create(apiAdFeed.code,
                 apiAdFeed.title,
                 apiAdFeed.body,
                 apiAdFeed.tag,

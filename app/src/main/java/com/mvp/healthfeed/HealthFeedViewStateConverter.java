@@ -23,47 +23,47 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
 
     @Override
     public void visit(HealthTipFeed tipFeed) {
-        HealthTipViewState tipViewState = HealthTipViewState.create(tipFeed.code,
-                tipFeed.title,
-                tipFeed.body,
-                tipFeed.tag,
-                tipFeed.supportText,
-                imagaeVisbilityFrom(tipFeed.imageUrl),
-                imagaeUrlFrom(tipFeed.imageUrl));
+        HealthTipViewState tipViewState = HealthTipViewState.create(tipFeed.code(),
+                tipFeed.title(),
+                tipFeed.body(),
+                tipFeed.tag(),
+                tipFeed.supportText(),
+                imagaeVisbilityFrom(tipFeed.imageUrl()),
+                imagaeUrlFrom(tipFeed.imageUrl()));
         viewStates.add(tipViewState);
     }
 
     @Override
     public void visit(HealthQuizFeed healthQuizFeed) {
-        HealthQuizViewState quizViewState = HealthQuizViewState.create(healthQuizFeed.code,
-                healthQuizFeed.title,
-                healthQuizFeed.body,
-                healthQuizFeed.tag,
-                healthQuizFeed.supportText,
-                imagaeVisbilityFrom(healthQuizFeed.imageUrl),
-                imagaeUrlFrom(healthQuizFeed.imageUrl));
+        HealthQuizViewState quizViewState = HealthQuizViewState.create(healthQuizFeed.code(),
+                healthQuizFeed.title(),
+                healthQuizFeed.body(),
+                healthQuizFeed.tag(),
+                healthQuizFeed.supportText(),
+                imagaeVisbilityFrom(healthQuizFeed.imageUrl()),
+                imagaeUrlFrom(healthQuizFeed.imageUrl()));
         viewStates.add(quizViewState);
     }
 
     @Override
     public void visit(HealthQnaFeed healthQnaFeed) {
-        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code,
-                healthQnaFeed.title,
-                healthQnaFeed.body,
-                imagaeVisbilityFrom(healthQnaFeed.imageUrl),
-                imagaeUrlFrom(healthQnaFeed.imageUrl));
+        HealthQnaViewState qnaViewState = HealthQnaViewState.create(healthQnaFeed.code(),
+                healthQnaFeed.title(),
+                healthQnaFeed.body(),
+                imagaeVisbilityFrom(healthQnaFeed.imageUrl()),
+                imagaeUrlFrom(healthQnaFeed.imageUrl()));
         viewStates.add(qnaViewState);
     }
 
     @Override
     public void visit(HealthAdFeed healthAdFeed) {
-        HealthAdViewState adViewState = HealthAdViewState.create(healthAdFeed.code,
-                healthAdFeed.title,
-                healthAdFeed.body,
-                healthAdFeed.tag,
-                healthAdFeed.supportText,
-                imagaeVisbilityFrom(healthAdFeed.imageUrl),
-                imagaeUrlFrom(healthAdFeed.imageUrl));
+        HealthAdViewState adViewState = HealthAdViewState.create(healthAdFeed.code(),
+                healthAdFeed.title(),
+                healthAdFeed.body(),
+                healthAdFeed.tag(),
+                healthAdFeed.supportText(),
+                imagaeVisbilityFrom(healthAdFeed.imageUrl()),
+                imagaeUrlFrom(healthAdFeed.imageUrl()));
         viewStates.add(adViewState);
     }
 

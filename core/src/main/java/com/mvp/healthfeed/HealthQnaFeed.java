@@ -1,31 +1,32 @@
 package com.mvp.healthfeed;
 
+
+import com.google.auto.value.AutoValue;
 import com.mvp.common.Optional;
 
-import java.util.List;
+@AutoValue
+public abstract class  HealthQnaFeed implements Feed {
 
-public class HealthQnaFeed implements Feed {
-
-    final int code;
-    final String title;
-    final String body;
-    final String tag;
-    final String supportText;
-    final Optional<String> imageUrl;
-
-    public HealthQnaFeed(int code,
-                         String title,
-                         String body,
-                         String tag,
-                         String supportText,
-                         Optional<String> imageUrl) {
-        this.code = code;
-        this.title = title;
-        this.body = body;
-        this.tag = tag;
-        this.supportText = supportText;
-        this.imageUrl = imageUrl;
+    public static HealthQnaFeed create(int code,
+                                      String title,
+                                      String body,
+                                      String tag,
+                                      String supportText,
+                                      Optional<String> imageUrl) {
+        return new AutoValue_HealthQnaFeed(code, title, body, tag, supportText, imageUrl);
     }
+
+    public abstract int code();
+
+    public abstract String title();
+
+    public abstract String body();
+
+    public abstract String tag();
+
+    public abstract String supportText();
+
+    public abstract Optional<String> imageUrl();
 
     @Override
     public void accept(Visitor visitor) {
