@@ -20,7 +20,6 @@ import retrofit2.Retrofit;
 public class NetworkModule {
 
     private static final int DEFAULT_DISK_CACHE_SIZE = 16 * 1024 * 1024; // 16MB
-    private static final int PRIORITY_DISK_CACHE_SIZE = 8 * 1024 * 1024; // 8MB
 
     private final Cache defaultCache;
 
@@ -31,7 +30,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     public HttpUrl baseUrl() {
-        return HttpUrl.parse("https://api.myjson.com/");
+        return HttpUrl.parse(BuildConfig.BASE_URL);
     }
 
     @Provides

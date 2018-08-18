@@ -10,7 +10,7 @@ import retrofit2.http.HeaderMap;
 import retrofit2.http.Url;
 
 interface HealthBackend {
-    String URL = "bins/ov00c";
+    String URL = "bins/fseak";
 
     @GET(URL)
     Single<ApiHealthFeed> load();
