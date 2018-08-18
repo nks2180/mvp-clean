@@ -1,5 +1,28 @@
 apply plugin: 'com.android.application'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:gradle-build-properties-plugin:0.4.1'
+    }
+}
+
+apply plugin: 'com.novoda.build-properties'
+
+buildProperties {
+    dev {
+        using rootProject.file('resources/environments/dev.properties')
+    }
+    prod {
+        using(rootProject.file('resources/environments/production.properties')).or(dev)
+    }
+    local {
+        using rootProject.file('local.properties')
+    }
+}
+
 android {
     compileSdkVersion versions.androidSdk.compile
     buildToolsVersion versions.androidSdk.buildTools
@@ -15,11 +38,48 @@ android {
         applicationId "com.mvp.nkumar.mvp"
         minSdkVersion versions.androidSdk.min
         targetSdkVersion versions.androidSdk.target
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["notAnnotation"] = "com.newsuk.performance.PerformanceTest"
         vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes.all { buildType ->
+        buildType.ext.proguardRules = { file ->
+            buildType.minifyEnabled true
+            buildType.proguardFiles getDefaultProguardFile('proguard-android.txt'), file
+        }
+    }
+
+    buildTypes {
+        debug {
+            proguardRules rootProject.file('resources/proguard/debug.pro')
+        }
+        release {
+            proguardRules rootProject.file('resources/proguard/release.pro')
+            buildConfigBoolean 'ENABLE_ANALYTICS', true
+        }
+    }
+
+    flavorDimensions 'environment'
+
+    productFlavors.all { flavor ->
+        flavor.ext.from = { flavorProperties ->
+            logger.debug ">>> Configuring '${flavor.name}' flavor using '${flavorProperties.name}' build properties"
+            dimension 'environment'
+            flavor.applicationId flavorProperties['applicationId'].string
+            flavor.versionCode = flavorProperties['versionCode'].int
+            flavor.versionName flavorProperties['versionName'].string
+            flavor.buildConfigString 'BASE_URL', (buildProperties.local['baseUrl'] | flavorProperties['baseUrl'])
+        }
+    }
+
+    productFlavors {
+        dev {
+            from buildProperties.dev
+        }
+        production {
+            from buildProperties.prod
+        }
     }
 }
 
