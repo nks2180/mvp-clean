@@ -2,18 +2,18 @@ package com.mvp.healthfeed.api;
 
 import com.mvp.common.Optional;
 import com.mvp.healthfeed.Feed;
-import com.mvp.healthfeed.HealthAdFeed;
+import com.mvp.healthfeed.AdFeed;
 import com.mvp.healthfeed.HealthFeed;
-import com.mvp.healthfeed.HealthQnaFeed;
-import com.mvp.healthfeed.HealthQuizFeed;
-import com.mvp.healthfeed.HealthTipFeed;
+import com.mvp.healthfeed.QnaFeed;
+import com.mvp.healthfeed.QuizFeed;
+import com.mvp.healthfeed.TipFeed;
 import com.mvp.healthfeed.Media;
 import com.mvp.rx.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>, ApiFeed.Visitor {
+public class FeedConverter implements Converter<ApiHealthFeed, HealthFeed>, ApiFeed.Visitor {
 
 
     @Override
@@ -37,7 +37,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
 
         }
-        return HealthTipFeed.create(apiTipFeed.code,
+        return TipFeed.create(apiTipFeed.code,
                 apiTipFeed.title,
                 apiTipFeed.body,
                 apiTipFeed.tag,
@@ -51,7 +51,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQnAFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return HealthQnaFeed.create(apiQnAFeed.code,
+        return QnaFeed.create(apiQnAFeed.code,
                 apiQnAFeed.title,
                 apiQnAFeed.body,
                 apiQnAFeed.tag,
@@ -65,7 +65,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiQuizFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return HealthQuizFeed.create(apiQuizFeed.code,
+        return QuizFeed.create(apiQuizFeed.code,
                 apiQuizFeed.title,
                 apiQuizFeed.body,
                 apiQuizFeed.tag,
@@ -79,7 +79,7 @@ public class HealthFeedConverter implements Converter<ApiHealthFeed, HealthFeed>
         for (ApiMedia apiMedia : apiAdFeed.mediaList) {
             mediaList.add(new Media(apiMedia.path, apiMedia.type));
         }
-        return HealthAdFeed.create(apiAdFeed.code,
+        return AdFeed.create(apiAdFeed.code,
                 apiAdFeed.title,
                 apiAdFeed.body,
                 apiAdFeed.tag,

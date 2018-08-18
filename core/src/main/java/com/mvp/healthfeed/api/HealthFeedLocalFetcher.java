@@ -16,12 +16,12 @@ public class HealthFeedLocalFetcher implements HealthFeedFetcher {
     private static final String HEALTH_FEED_JSON = "healthfeed.json";
 
     private final AssetLoader assetLoader;
-    private final HealthFeedConverter converter;
+    private final FeedConverter converter;
     private final JsonAdapter<ApiHealthFeed> adapter;
 
     public static HealthFeedLocalFetcher from(Moshi moshi,
                                               AssetLoader assetLoader) {
-        HealthFeedConverter converter = new HealthFeedConverter();
+        FeedConverter converter = new FeedConverter();
         JsonAdapter<ApiHealthFeed> adapter = moshi.newBuilder()
                 .add(ApiFeed.class, ApiFeedJsonAdapter.from(moshi))
                 .build()
@@ -29,7 +29,7 @@ public class HealthFeedLocalFetcher implements HealthFeedFetcher {
         return new HealthFeedLocalFetcher(converter, assetLoader, adapter);
     }
 
-    private HealthFeedLocalFetcher(HealthFeedConverter converter,
+    private HealthFeedLocalFetcher(FeedConverter converter,
                                    AssetLoader assetLoader,
                                    JsonAdapter<ApiHealthFeed> adapter) {
         this.converter = converter;

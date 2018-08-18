@@ -9,12 +9,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class HealthFeedApiFetcher implements HealthFeedFetcher {
 
-    private final HealthFeedConverter converter;
+    private final FeedConverter converter;
     private final HealthBackend healthBackend;
 
     public static HealthFeedApiFetcher from(Retrofit retrofit,
                                             Moshi moshi) {
-        HealthFeedConverter converter = new HealthFeedConverter();
+        FeedConverter converter = new FeedConverter();
 
         Moshi localMoshi = moshi.newBuilder()
                 .add(ApiFeed.class, ApiFeedJsonAdapter.from(moshi))
@@ -28,7 +28,7 @@ public class HealthFeedApiFetcher implements HealthFeedFetcher {
         return new HealthFeedApiFetcher(converter, healthBackend);
     }
 
-    private HealthFeedApiFetcher(HealthFeedConverter converter,
+    private HealthFeedApiFetcher(FeedConverter converter,
                                  HealthBackend healthBackend) {
         this.converter = converter;
         this.healthBackend = healthBackend;

@@ -13,10 +13,10 @@ import static com.google.common.truth.Truth.assertThat;
 
 public class HealthFeedViewStateConverterTest {
     private static final String INVALID_IMAGE_URL = "http://image.url";
-    private static final Feed TIP_FEED = HealthTipFeed.create(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
-    private static final Feed QNA_FEED = HealthQnaFeed.create(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
-    private static final Feed QUIZ_FEED = HealthQuizFeed.create(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
-    private static final Feed AD_FFED = HealthAdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
+    private static final Feed TIP_FEED = TipFeed.create(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
+    private static final Feed QNA_FEED = QnaFeed.create(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
+    private static final Feed QUIZ_FEED = QuizFeed.create(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
+    private static final Feed AD_FFED = AdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
 
     private HealthFeedViewStateConverter converter;
 
@@ -63,7 +63,7 @@ public class HealthFeedViewStateConverterTest {
 
     @Test
     public void shouldReturnBannerVisibilityAsFalseIfBannerImageUrlIsAbsent() throws Exception {
-        Feed feed = HealthAdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.<String>absent());
+        Feed feed = AdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.<String>absent());
         HealthFeed healthFeed = healthFeedWith(feed);
 
         HealthFeedViewState convertedViewState =  converter.apply(healthFeed);

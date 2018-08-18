@@ -8,13 +8,13 @@ public interface Feed {
 
     interface Visitor {
 
-        void visit(HealthTipFeed tipFeed);
+        void visit(TipFeed tipFeed);
 
-        void visit(HealthQuizFeed healthQuizFeed);
+        void visit(QuizFeed quizFeed);
 
-        void visit(HealthQnaFeed healthQnaFeed);
+        void visit(QnaFeed qnaFeed);
 
-        void visit(HealthAdFeed healthAdFeed);
+        void visit(AdFeed adFeed);
 
         void visit(UnknownFeed unknownFeed);
 

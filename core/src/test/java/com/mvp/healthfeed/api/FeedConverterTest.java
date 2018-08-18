@@ -1,23 +1,21 @@
 package com.mvp.healthfeed.api;
 
 import com.mvp.common.Optional;
-import com.mvp.healthfeed.HealthAdFeed;
+import com.mvp.healthfeed.AdFeed;
 import com.mvp.healthfeed.HealthFeed;
-import com.mvp.healthfeed.HealthQnaFeed;
-import com.mvp.healthfeed.HealthQuizFeed;
-import com.mvp.healthfeed.HealthTipFeed;
+import com.mvp.healthfeed.QnaFeed;
+import com.mvp.healthfeed.QuizFeed;
+import com.mvp.healthfeed.TipFeed;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import static com.google.common.truth.Truth.assertThat;
 
-public class HealthFeedConverterTest {
+public class FeedConverterTest {
     private static final ApiStatus API_STATUS = new ApiStatus(11, "message");
     private static final ApiMedia API_MEDIA = new ApiMedia("http://media.path", "image");
     private static final ApiFeed API_TIP_FEED = new ApiTipFeed(100, "Tip title", "Tip body", "tag", "Tip support text", Arrays.asList(API_MEDIA));
@@ -25,11 +23,11 @@ public class HealthFeedConverterTest {
     private static final ApiFeed API_AD_FEED = new ApiAdFeed(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Arrays.asList(API_MEDIA));
     private static final ApiFeed API_QUIZ_FEED = new ApiQuizFeed(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Arrays.asList(API_MEDIA));
 
-    private HealthFeedConverter converter;
+    private FeedConverter converter;
 
     @Before
     public void setUp() throws Exception {
-        converter = new HealthFeedConverter();
+        converter = new FeedConverter();
     }
 
     @Test
@@ -52,7 +50,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthTipFeed expectedTipFeed = HealthTipFeed.create(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
+        TipFeed expectedTipFeed = TipFeed.create(100, "Tip title", "Tip body", "tag", "Tip support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedTipFeed);
 
     }
@@ -64,7 +62,7 @@ public class HealthFeedConverterTest {
                 .build();
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
-        HealthQnaFeed expectedQnAFeed = HealthQnaFeed.create(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
+        QnaFeed expectedQnAFeed = QnaFeed.create(200, "Qna Title", "Qna body", "tag", "Qna support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedQnAFeed);
     }
 
@@ -76,7 +74,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthAdFeed expectedAdFeed = HealthAdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
+        AdFeed expectedAdFeed = AdFeed.create(300, "Ad title", "Ad body", "Ad tag", "Ad support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedAdFeed);
 
     }
@@ -89,7 +87,7 @@ public class HealthFeedConverterTest {
 
         HealthFeed convertedHealthFeed = converter.apply(apiHealthFeed);
 
-        HealthQuizFeed expectedQuizFeed = HealthQuizFeed.create(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
+        QuizFeed expectedQuizFeed = QuizFeed.create(500, "Quiz title", "Quiz body", "Quiz tag", "Quiz support text", Optional.of("http://media.path"));
         assertThat(convertedHealthFeed.healthStories.get(0)).isEqualTo(expectedQuizFeed);
 
     }
