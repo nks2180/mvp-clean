@@ -29,4 +29,39 @@ class HealthFeedView {
     void show(List<FeedViewState> viewStates) {
         adapter.setViewStates(viewStates);
     }
+
+    public void setListener(final Listener listener) {
+        adapter.setListener(new HealthFeedAdapter.Listener() {
+            @Override
+            public void onAdFeedTapped(HealthAdViewState adViewState) {
+                listener.onAdFeedTapped(adViewState);
+            }
+
+            @Override
+            public void onQnAFeedTapped(HealthQnaViewState viewState) {
+                listener.onQnAFeedTapped(viewState);
+            }
+
+            @Override
+            public void onQuizFeedTapped(HealthQuizViewState viewState) {
+                listener.onQuizFeedTapped(viewState);
+            }
+
+            @Override
+            public void onTipFeedTapped(HealthTipViewState viewState) {
+                listener.onTipFeedTapped(viewState);
+            }
+        });
+    }
+
+    interface Listener {
+
+        void onQuizFeedTapped(HealthQuizViewState adViewState);
+
+        void onQnAFeedTapped(HealthQnaViewState adViewState);
+
+        void onAdFeedTapped(HealthAdViewState adViewState);
+
+        void onTipFeedTapped(HealthTipViewState adViewState);
+    }
 }
