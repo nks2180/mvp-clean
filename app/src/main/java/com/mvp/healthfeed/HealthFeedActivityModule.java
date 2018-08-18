@@ -1,5 +1,7 @@
 package com.mvp.healthfeed;
 
+import com.mvp.Navigation.AndroidNavigator;
+import com.mvp.Navigation.Navigator;
 import com.mvp.common.AssetLoader;
 import com.mvp.healthfeed.api.HealthFeedApiFetcher;
 import com.mvp.healthfeed.api.HealthFeedLocalFetcher;
@@ -13,6 +15,11 @@ import retrofit2.Retrofit;
 
 @Module()
 public class HealthFeedActivityModule {
+
+    @Provides
+    Navigator navigator(HealthFeedActivity activity) {
+        return new AndroidNavigator(activity);
+    }
 
     @Provides
     HealthFeedLocalFetcher localHealthFeedFetcher(Moshi moshi, AssetLoader assetLoader) {
@@ -35,8 +42,9 @@ public class HealthFeedActivityModule {
     @Provides
     HealthFeedActivityPresenter presenter(HealthFeedActivity activity,
                                           HealthFeedUseCase useCase,
-                                          ImageLoader imageLoader) {
+                                          ImageLoader imageLoader,
+                                          Navigator navigator) {
         HealthFeedView feedView = HealthFeedView.from(activity, imageLoader);
-        return new HealthFeedActivityPresenter(useCase, feedView);
+        return new HealthFeedActivityPresenter(useCase, feedView, navigator);
     }
 }

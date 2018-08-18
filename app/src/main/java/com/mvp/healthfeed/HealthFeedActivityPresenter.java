@@ -1,6 +1,6 @@
 package com.mvp.healthfeed;
 
-import android.util.Log;
+import com.mvp.Navigation.Navigator;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.Disposables;
@@ -10,33 +10,35 @@ class HealthFeedActivityPresenter {
 
     private final HealthFeedUseCase useCase;
     private final HealthFeedView view;
+    private final Navigator navigator;
     private Disposable disposable = Disposables.empty();
     private final HealthFeedView.Listener listener = new HealthFeedView.Listener() {
 
         @Override
         public void onQuizFeedTapped(HealthQuizViewState adViewState) {
-            Log.d("Presenter", "onQuizFeedTapped");
+            navigator.toQuizDetail();
         }
 
         @Override
         public void onQnAFeedTapped(HealthQnaViewState adViewState) {
-            Log.d("Presenter", "onQnAFeedTapped");
+            navigator.toQnaDetail();
         }
 
         @Override
         public void onAdFeedTapped(HealthAdViewState adViewState) {
-            Log.d("Presenter", "onAdFeedTapped");
+            navigator.toAdDetail();
         }
 
         @Override
         public void onTipFeedTapped(HealthTipViewState adViewState) {
-            Log.d("Presenter", "onTipFeedTapped");
+            navigator.toTipDetail();
         }
     };
 
-    HealthFeedActivityPresenter(HealthFeedUseCase useCase, HealthFeedView view) {
+    HealthFeedActivityPresenter(HealthFeedUseCase useCase, HealthFeedView view, Navigator navigator) {
         this.useCase = useCase;
         this.view = view;
+        this.navigator = navigator;
     }
 
     void startPresenting() {
@@ -53,5 +55,6 @@ class HealthFeedActivityPresenter {
 
     void stopPresenting() {
         disposable.dispose();
+        view.setListener(HealthFeedView.Listener.NO_OP);
     }
 }

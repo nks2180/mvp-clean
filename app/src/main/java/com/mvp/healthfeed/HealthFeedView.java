@@ -56,6 +56,28 @@ class HealthFeedView {
 
     interface Listener {
 
+        Listener NO_OP = new Listener() {
+            @Override
+            public void onQuizFeedTapped(HealthQuizViewState adViewState) {
+                // no op
+            }
+
+            @Override
+            public void onQnAFeedTapped(HealthQnaViewState adViewState) {
+                // no op
+            }
+
+            @Override
+            public void onAdFeedTapped(HealthAdViewState adViewState) {
+                // no op
+            }
+
+            @Override
+            public void onTipFeedTapped(HealthTipViewState adViewState) {
+                // no op
+            }
+        };
+
         void onQuizFeedTapped(HealthQuizViewState adViewState);
 
         void onQnAFeedTapped(HealthQnaViewState adViewState);
