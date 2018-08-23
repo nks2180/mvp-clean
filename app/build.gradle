@@ -39,7 +39,6 @@ android {
         minSdkVersion versions.androidSdk.min
         targetSdkVersion versions.androidSdk.target
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArguments["notAnnotation"] = "com.newsuk.performance.PerformanceTest"
         vectorDrawables.useSupportLibrary = true
     }
 

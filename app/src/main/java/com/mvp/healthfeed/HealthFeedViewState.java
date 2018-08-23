@@ -1,20 +1,20 @@
 package com.mvp.healthfeed;
 
-import com.google.auto.value.AutoValue;
-
 import java.util.List;
 
-@AutoValue
 public abstract class HealthFeedViewState {
 
-    public static HealthFeedViewState create(List<FeedViewState> componentViewStates) {
-        return new AutoValue_HealthFeedViewState(componentViewStates);
+    abstract List<FeedViewState> feedViewStates();
+
+    public abstract void accept(Visitor visitor);
+
+    public interface Visitor {
+
+        void visit(HealthFeedIdleViewState idle);
+
+        void visit(HealthFeedLoadingViewState loading);
+
+        void visit(HealthFeedErrorViewState error);
     }
-
-//    public HealthFeedViewState withComponents(List<FeedViewState> feedViewStates) {
-//        return create(feedViewStates);
-//    }
-
-    public abstract List<FeedViewState> feedViewStates();
 
 }
