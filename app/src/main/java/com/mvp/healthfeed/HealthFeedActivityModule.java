@@ -45,6 +45,6 @@ public class HealthFeedActivityModule {
                                           ImageLoader imageLoader,
                                           Navigator navigator) {
         HealthFeedView feedView = HealthFeedView.from(activity, imageLoader);
-        return new HealthFeedActivityPresenter(useCase, feedView, navigator);
+        return new HealthFeedActivityPresenter(useCase, new HealthFeedDisplayer(feedView), navigator);
     }
 }

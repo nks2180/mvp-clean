@@ -18,7 +18,7 @@ public class HealthFeedViewStateConverter implements Converter<HealthFeed, Healt
         for (Feed feed : healthFeed.healthStories) {
             feed.accept(this);
         }
-        return HealthFeedViewState.create(viewStates);
+        return HealthFeedIdleViewState.create(viewStates);
     }
 
     @Override

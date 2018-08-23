@@ -3,7 +3,7 @@ package com.mvp.healthfeed;
 import com.mvp.healthfeed.api.HealthFeedFetcher;
 import com.mvp.rx.SchedulingStrategy;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 public class HealthFeedUseCase {
 
@@ -19,9 +19,13 @@ public class HealthFeedUseCase {
         this.schedulingStrategyFactory = schedulingStrategyFactory;
     }
 
-    Single<HealthFeedViewState> healthFeed() {
+    Observable<HealthFeedViewState> healthFeed() {
+        HealthFeedViewState loading = HealthFeedLoadingViewState.createLoading();
         return fetcher.load()
+                .toObservable()
                 .map(converter)
+                .startWith(loading)
+                .compose(new HealthFeedViewStateErrorConverter())
                 .compose(schedulingStrategyFactory.<HealthFeedViewState>create());
     }
 }

@@ -9,7 +9,7 @@ import io.reactivex.functions.Consumer;
 class HealthFeedActivityPresenter {
 
     private final HealthFeedUseCase useCase;
-    private final HealthFeedView view;
+    private final HealthFeedDisplayer displayer;
     private final Navigator navigator;
     private Disposable disposable = Disposables.empty();
     private final HealthFeedView.Listener listener = new HealthFeedView.Listener() {
@@ -35,9 +35,9 @@ class HealthFeedActivityPresenter {
         }
     };
 
-    HealthFeedActivityPresenter(HealthFeedUseCase useCase, HealthFeedView view, Navigator navigator) {
+    HealthFeedActivityPresenter(HealthFeedUseCase useCase, HealthFeedDisplayer displayer, Navigator navigator) {
         this.useCase = useCase;
-        this.view = view;
+        this.displayer = displayer;
         this.navigator = navigator;
     }
 
@@ -46,15 +46,15 @@ class HealthFeedActivityPresenter {
                 .subscribe(new Consumer<HealthFeedViewState>() {
                     @Override
                     public void accept(HealthFeedViewState healthFeedViewState) throws Exception {
-                        view.show(healthFeedViewState.feedViewStates());
+                        displayer.show(healthFeedViewState);
                     }
                 });
-        view.setListener(listener);
+        displayer.setListener(listener);
 
     }
 
     void stopPresenting() {
         disposable.dispose();
-        view.setListener(HealthFeedView.Listener.NO_OP);
+        displayer.setListener(HealthFeedView.Listener.NO_OP);
     }
 }

@@ -11,6 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 import static org.mockito.Mockito.atLeastOnce;
@@ -20,9 +21,10 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class HealthFeedActivityPresenterTest {
 
-    private static final HealthFeedViewState HEALTH_FEED_VIEW_STATE = HealthFeedViewState.create(Collections.<FeedViewState>emptyList());
+    private static final HealthFeedViewState HEALTH_FEED_VIEW_STATE = HealthFeedIdleViewState
+            .create(Collections.<FeedViewState>emptyList());
 
-    @Mock private HealthFeedView view;
+    @Mock private HealthFeedDisplayer displayer;
     @Mock private HealthFeedUseCase useCase;
     @Mock private Navigator navigator;
     @Mock private HealthQnaViewState QNA_VIEW_STATE;
@@ -34,15 +36,15 @@ public class HealthFeedActivityPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        when(useCase.healthFeed()).thenReturn(Single.just(HEALTH_FEED_VIEW_STATE));
-        presenter = new HealthFeedActivityPresenter(useCase, view, navigator);
+        when(useCase.healthFeed()).thenReturn(Observable.just(HEALTH_FEED_VIEW_STATE));
+        presenter = new HealthFeedActivityPresenter(useCase, displayer, navigator);
     }
 
     @Test
     public void shouldUpdateViewWhenHealthFeedResponseCome() throws Exception {
         presenter.startPresenting();
 
-        verify(view).show(HEALTH_FEED_VIEW_STATE.feedViewStates());
+        verify(displayer).show(HEALTH_FEED_VIEW_STATE);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class HealthFeedActivityPresenterTest {
 
         presenter.stopPresenting();
 
-        verify(view).setListener(HealthFeedView.Listener.NO_OP);
+        verify(displayer).setListener(HealthFeedView.Listener.NO_OP);
     }
 
     @Test
@@ -92,7 +94,7 @@ public class HealthFeedActivityPresenterTest {
 
     private HealthFeedView.Listener invoke() {
         ArgumentCaptor<HealthFeedView.Listener> captor = ArgumentCaptor.forClass(HealthFeedView.Listener.class);
-        verify(view, atLeastOnce()).setListener(captor.capture());
+        verify(displayer, atLeastOnce()).setListener(captor.capture());
         return captor.getValue();
     }
 }
